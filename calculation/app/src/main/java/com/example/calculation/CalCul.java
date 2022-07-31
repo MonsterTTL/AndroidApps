@@ -58,7 +58,7 @@ public class CalCul {
                 switch (temp)
                 {
                     case "+":
-                        if(tok.peek().equals("*") || tok.peek().equals("/"))
+                        if(tok.peek().equals("*") || tok.peek().equals("/") || tok.peek().equals("+") ||tok.peek().equals("-"))
                         {
                             while(!tok.isEmpty())
                             {
@@ -68,7 +68,7 @@ public class CalCul {
                         tok.push("+");
                         break;
                     case "-":
-                        if(tok.peek().equals("*") || tok.peek().equals("/"))
+                        if(tok.peek().equals("*") || tok.peek().equals("/") || tok.peek().equals("+") ||tok.peek().equals("-"))
                         {
                             while(!tok.isEmpty())
                             {
@@ -78,9 +78,23 @@ public class CalCul {
                         tok.push("-");
                         break;
                     case "*":
+                        if(tok.peek().equals("*") || tok.peek().equals("/") || tok.peek().equals("+") ||tok.peek().equals("-"))
+                        {
+                            while(!tok.isEmpty())
+                            {
+                                ret.push(tok.pop());
+                            }
+                        }
                         tok.push("*");
                         break;
                     case "/":
+                        if(tok.peek().equals("*") || tok.peek().equals("/") || tok.peek().equals("+") ||tok.peek().equals("-"))
+                        {
+                            while(!tok.isEmpty())
+                            {
+                                ret.push(tok.pop());
+                            }
+                        }
                         tok.push("/");
                         break;
                     case "(":

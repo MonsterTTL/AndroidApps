@@ -3,12 +3,14 @@ package com.example.calculation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     StringBuilder help = new StringBuilder();
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView Shows;
     boolean flag = false;
     boolean flagKuohao = false;
+    boolean NegeFlag = false;
     int NumKuohao = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v){
+        String [] test = new String[1];
+        test = use.toArray(test);
+        Log.d("MainActivity",Arrays.toString(test));
         if(flag)
         {
             help.delete(0,help.length());
@@ -134,12 +140,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     else{
                         String temp = use.get(use.size()-1);
-                        if(temp.equals("+") || temp.equals("-") ||
-                                temp.equals("*") || temp.equals("/"))
+                        if(temp.equals("+") || temp.equals("-") || temp.equals("*") || temp.equals("/") ||temp.equals("(") || temp.equals(")"))
                         {
+
+                            if(temp.equals("("))
+                            {
+                                NumKuohao--;
+                                if(NumKuohao == 0)
+                                    flagKuohao = false;
+                            }else if(temp.equals(")"))
+                            {
+                                NumKuohao++;
+                                flagKuohao = true;
+                            }
                             use.remove(use.size()-1);
                         }else{
-                        useHelp.append(use.get(use.size()-1));
+                            useHelp.append(use.get(use.size()-1));
                             use.remove(use.size()-1);
                         }
 
@@ -152,12 +168,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 use.clear();
                 break;
             case R.id.ButtonLeft:
+
                 help.append('(');
                 use.add("(");
                 NumKuohao++;
                 flagKuohao = true;
                 break;
             case R.id.ButtonRight:
+                if(useHelp.length() != 0)
+                    use.add(useHelp.toString());
                 if(use.size() == 0 || use.get(use.size()-1).equals("("))
                 {
                     Toast.makeText(MainActivity.this,"计算式有误",Toast.LENGTH_SHORT).show();
@@ -169,23 +188,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
                 help.append(')');
-                if(useHelp.length() != 0)
-                    use.add(useHelp.toString());
-
                 use.add(")");
                 NumKuohao--;
                 if(NumKuohao == 0)
                     flagKuohao = false;
                 useHelp.delete(0,useHelp.length());
-
                 break;
             case  R.id.plusButton:
                 if(useHelp.length() > 0)
-                {use.add(useHelp.toString());
-                 useHelp.delete(0,useHelp.length());
+                {
+                    use.add(useHelp.toString());
+                    useHelp.delete(0,useHelp.length());
                 }
                 if(use.size()==0 || use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")
-                ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/"))
+                ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/")||use.get(use.size()-1).equals("("))
                 {
                     Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
                     return;
@@ -197,24 +213,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.minusButton:
 
                 if(useHelp.length() > 0)
-                    use.add(useHelp.toString());
-                if(use.size()==0 || use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")
+                {
+                    if(useHelp.toString().equals("-"))
+                    {
+                        NegeFlag = !NegeFlag;
+                        useHelp.delete(0,1);
+                        use.add("(");
+                        NumKuohao++;
+                        flagKuohao=true;
+                        useHelp.append("-");
+                        help.append("(");
+                        help.append("-");
+                        Shows.setText(help.toString());
+                        return;
+                    }else {
+                        use.add(useHelp.toString());
+                        useHelp.delete(0, useHelp.length());
+
+                    }
+
+                }
+
+                if(use.size() == 0 || use.get(use.size()-1).equals("("))
+                {
+                    useHelp.append("-");
+                    help.append("-");
+
+                }else if(use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")
                         ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/"))
                 {
-                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
-                    return;
+                    use.add("(");
+                    help.append("(");
+                    help.append("-");
+                    useHelp.append("-");
+                    NumKuohao++;
+                    flagKuohao = true;
+                    //Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    //return;
                 }else{
                     help.append('-');
+                    use.add("-");
                 }
-                use.add("-");
-                useHelp.delete(0,useHelp.length());
+
                 break;
             case R.id.timesButton:
 
                 if(useHelp.length() > 0)
                     use.add(useHelp.toString());
                 if(use.size()==0 || use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")
-                        ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/"))
+                        ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/")||use.get(use.size()-1).equals("("))
                 {
                     Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
                     return;
@@ -228,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(useHelp.length() > 0)
                     use.add(useHelp.toString());
                 if(use.size()==0 || use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")
-                        ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/"))
+                        ||use.get(use.size()-1).equals("*")||use.get(use.size()-1).equals("/")||use.get(use.size()-1).equals("("))
                 {
                     Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
                     return;
@@ -280,12 +327,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 useHelp.delete(0,useHelp.length());
                 String[] fin = new String[1];
+
                 fin = CalCul.midToend(use.toArray(use.toArray(fin)));
+                Log.d("ZhuAct", Arrays.toString(fin));
                 float shows;
                 if(fin[0] != null)
                 {
                     shows = CalCul.evalRPN(fin);
+                    if(NegeFlag == true)
+                    {
+                        shows = -shows;
+                    }
                     String helpfina = CalCul.fmt_prt_double(shows);
+                    test = use.toArray(test);
+                    Log.d("MainActivity",Arrays.toString(test));
                     use.clear();
                     help.delete(0,help.length());
                     help.append(helpfina);
