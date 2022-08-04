@@ -91,43 +91,93 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             case R.id.Button0:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('0');
                 useHelp.append('0');
                 //Toast.makeText(MainActivity.this,"0",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Button1:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('1');
                 useHelp.append('1');
                 break;
             case R.id.Button2:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('2');
                 useHelp.append('2');
                 break;
             case R.id.Button3:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('3');
                 useHelp.append('3');
                 break;
             case R.id.Button4:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('4');
                 useHelp.append('4');
                 break;
             case R.id.Button5:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('5');
                 useHelp.append('5');
                 break;
             case R.id.Button6:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('6');
                 useHelp.append('6');
                 break;
             case R.id.Button7:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('7');
                 useHelp.append('7');
                 break;
             case R.id.Button8:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('8');
                 useHelp.append('8');
                 break;
             case R.id.Button9:
+                if(use.size() > 0 &&use.get(use.size()-1).equals(")"))
+                {
+                    Toast.makeText(MainActivity.this,"计算式有误！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 help.append('9');
                 useHelp.append('9');
                 break;
@@ -168,11 +218,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 use.clear();
                 break;
             case R.id.ButtonLeft:
-
-                help.append('(');
-                use.add("(");
-                NumKuohao++;
-                flagKuohao = true;
+                if(use.size()>0 && (use.get(use.size()-1).equals("+") ||use.get(use.size()-1).equals("-")||use.get(use.size()-1).equals("*")
+                ||use.get(use.size()-1).equals("/")||use.get(use.size()-1).equals("(")  ))
+                {   help.append('(');
+                    use.add("(");
+                    NumKuohao++;
+                    flagKuohao = true;
+                }else{
+                    Toast.makeText(MainActivity.this,"计算式有误",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.ButtonRight:
                 if(useHelp.length() != 0)
@@ -190,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 help.append(')');
                 use.add(")");
                 NumKuohao--;
-                if(NumKuohao == 0)
+                if(NumKuohao <= 0)
                     flagKuohao = false;
                 useHelp.delete(0,useHelp.length());
                 break;
@@ -290,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     Toast.makeText(MainActivity.this,"小数点前必须有整数！！",Toast.LENGTH_SHORT).show();
                 }else{
-                    if(useHelp.charAt(useHelp.length()-1)!='.'){
+                    if(useHelp.lastIndexOf(".")==(-1)){
                         help.append('.');
                         useHelp.append('.');}
                     else{
@@ -300,7 +354,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.ButtonEquals:
-                if(use.size() == 0)
+                if(use.size() == 0 || (useHelp.length() > 0 &&(useHelp.charAt(useHelp.length()-1) == '-')))
                 {
                     Toast.makeText(MainActivity.this,"请输入计算公式",Toast.LENGTH_SHORT).show();
                     return;
@@ -342,6 +396,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     test = use.toArray(test);
                     Log.d("MainActivity",Arrays.toString(test));
                     use.clear();
+                    NegeFlag = false;
                     help.delete(0,help.length());
                     help.append(helpfina);
                 }
