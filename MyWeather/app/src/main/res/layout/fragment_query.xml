@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    tools:context=".fragmentClass.queryFragment">
+    <TextView
+        android:id="@+id/guanli"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="?attr/colorPrimary"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:text="城市管理"
+        />
+
+    <FrameLayout
+        android:id="@+id/actionBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/guanli"
+        android:background="?attr/colorPrimary">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center_vertical">
+            <EditText
+                android:id="@+id/searchPlaceEdit"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:background="#fff"
+                android:hint="请输入地址"
+                android:maxLength="25"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/queryRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionBarLayout"
+        />
+
+
+
+</RelativeLayout>
