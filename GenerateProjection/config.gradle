@@ -1,0 +1,43 @@
+ext{
+
+    android = [
+            compileSdkVersion :33,
+            buildToolsVersion: "30.0.2",
+            applicationId :"activitytest.com.example.moduletest",
+            minSdkVersion: 29,
+            targetSdkVersion :30,
+            versionCode :1,
+            versionName :"1.0",
+    ]
+
+    androidxDeps = [
+            "appcompat": 'androidx.appcompat:appcompat:1.6.1',
+            "material": 'com.google.android.material:material:1.8.0',
+            "constaraintlayout": 'androidx.constraintlayout:constraintlayout:2.1.4',
+            "recyclerview" : 'androidx.recyclerview:recyclerview:1.2.1'
+    ]
+
+    commonDeps = [
+            "arouter_api"          : 'com.alibaba:arouter-api:1.5.2',
+            "glide"                : 'com.github.bumptech.glide:glide:4.11.0'
+
+    ]
+
+    annotationDeps = [
+            "arouter_api"          : 'com.alibaba:arouter-api:1.5.2',
+            "arouter_compiler" : 'com.alibaba:arouter-compiler:1.5.2'
+    ]
+
+    retrofitDeps = [
+            "retrofit"  : 'com.squareup.retrofit2:retrofit:2.9.0',
+            "converter" : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            "rxjava"    : 'io.reactivex.rxjava2:rxjava:2.2.20',
+            "rxandroid" : 'io.reactivex.rxjava2:rxandroid:2.1.1',
+            "adapter"   : 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    ]
+
+    androidxLibs = androidxDeps.values()
+    commonLibs = commonDeps.values()
+    annotationLibs = annotationDeps.values()
+    retrofitLibs = retrofitDeps.values()
+}

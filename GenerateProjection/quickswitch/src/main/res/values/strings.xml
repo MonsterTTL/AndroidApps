@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">QuickSwitch</string>
+    <string name="wifi_close">关闭Wifi</string>
+    <string name="wifi_open">开启Wifi</string>
+</resources>
