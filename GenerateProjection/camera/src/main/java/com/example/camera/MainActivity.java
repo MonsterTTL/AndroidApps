@@ -482,4 +482,10 @@ public class MainActivity extends AppCompatActivity {
         stopBackgroundThread();
         super.onPause();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        closeCamera();
+    }
 }

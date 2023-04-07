@@ -15,4 +15,9 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="AppTheme.Launcher" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

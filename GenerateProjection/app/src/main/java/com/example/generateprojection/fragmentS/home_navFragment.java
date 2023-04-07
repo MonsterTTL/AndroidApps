@@ -28,6 +28,8 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
     View magnifyGlass;
     View light;
     View quickSettings;
+    View LightS;
+    View AlarmClock;
     FloatingActionButton audioInput;
     ActivityResultLauncher<String> launcher;
     @Nullable
@@ -36,9 +38,10 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
         View view = inflater.inflate(R.layout.home_navfragment,container,false);
         remoteAssit = view.findViewById(R.id.remote_assit);
         magnifyGlass = view.findViewById(R.id.magnify);
+        LightS = view.findViewById(R.id.LightS);
         audioInput = view.findViewById(R.id.audioInput);
         quickSettings = view.findViewById(R.id.quickSetting);
-
+        AlarmClock = view.findViewById(R.id.alarm_clock);
         launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission()
                 , new ActivityResultCallback<Boolean>() {
                     @Override
@@ -75,6 +78,19 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
                 Toast.makeText(requireContext(), "tt", Toast.LENGTH_SHORT).show();
             }
         });
+        LightS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/Light/LightActivity").navigation();
+            }
+        });
+
+        AlarmClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/Alarm/AlarmClock").navigation();
+            }
+        });
 
         //语音识别模块
         audioInput.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +120,8 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
 
         }else if(result.contains("快捷设置")){
             ARouter.getInstance().build("/quick/quickActivity").navigation();
+        }else if(result.contains("手电筒")){
+            ARouter.getInstance().build("/Light/LightActivity").navigation();
         }
     }
 }

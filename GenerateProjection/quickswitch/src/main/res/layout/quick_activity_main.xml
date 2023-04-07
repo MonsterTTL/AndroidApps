@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuickActivity">
+    tools:context=".QuickActivity"
+    android:fitsSystemWindows="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
@@ -13,9 +14,11 @@
         android:layout_marginStart="7dp"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toTopOf="@+id/cardView4" >
+        app:layout_constraintTop_toTopOf="@+id/cardView4"
+        android:fitsSystemWindows="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:fitsSystemWindows="true"
             android:id="@+id/clockSetting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,6 +26,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:fitsSystemWindows="true"
         android:id="@+id/cardView4"
         android:layout_width="100dp"
         android:layout_height="100dp"

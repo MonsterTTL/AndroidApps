@@ -8,5 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar">#FFECB3</color>
-
+    <color name="青绿">#215A59</color>
+    <color name="凌霄">#ED723F</color>
+    <color name="妥蓝">#6F9BC6</color>
+    <color name="雄黄">#F3993A</color>
+    <color name="法蓝">#29AFD4</color>
+    <color name="粉红">#E7C2CA</color>
+    <color name="小红">#E6755F</color>
+    <color name="水绿">#8DB799</color>
 </resources>

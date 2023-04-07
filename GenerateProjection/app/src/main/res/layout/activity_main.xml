@@ -11,7 +11,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FFECB3"
+        android:background="@color/orange"
         app:itemRippleColor="@color/orange"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,25 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.91" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/AppViewPager2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

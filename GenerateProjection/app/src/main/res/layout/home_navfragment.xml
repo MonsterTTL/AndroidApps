@@ -4,46 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F5E9">
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView11"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="50dp"
         android:background="#F0F4C3"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/remote_assit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF9C4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:text="远程协助"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:background="#6FE67F">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="123dp"
-                android:layout_height="116dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.983"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/assit" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/suolian" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -56,161 +45,232 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView13"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
+        app:layout_constraintStart_toStartOf="@+id/guideline6">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LightS"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF9C4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:text="手电筒"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:background="#338AE4">
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="97dp"
-                android:layout_height="87dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/light" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/lights" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        android:text="实用工具"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView12"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView11"
+        app:layout_constraintStart_toStartOf="@+id/cardView11"
         app:layout_constraintTop_toBottomOf="@+id/cardView11">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/magnify"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF9C4">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="7dp"
-                android:text="放大镜"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:background="#FFF176">
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="86dp"
-                android:layout_height="81dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/magnify" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/fangdajing" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/audioInput"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:foregroundGravity="center"
         app:backgroundTint="#FFFDE7"
-        app:fabCustomSize="80dp"
+        app:fabCustomSize="70dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="40dp"
         app:srcCompat="@drawable/microphone" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="系统设置"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/cardView11"
-        app:layout_constraintTop_toBottomOf="@+id/cardView12" />
-
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView14"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView12"
         app:layout_constraintEnd_toEndOf="@+id/cardView13"
         app:layout_constraintStart_toStartOf="@+id/cardView13"
-        app:layout_constraintTop_toTopOf="@+id/cardView12" >
+        app:layout_constraintTop_toTopOf="@+id/cardView12">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/quickSetting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF9C4">
+            android:background="#ACABA8">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="124dp"
-                android:layout_height="106dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/setting" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="7dp"
-                android:text="快捷设置"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/setting_sw" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="远程协助"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView11"
+        app:layout_constraintStart_toStartOf="@+id/cardView11"
+        app:layout_constraintTop_toBottomOf="@+id/cardView11" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="手电筒"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/cardView13"
+        app:layout_constraintStart_toStartOf="@+id/cardView13"
+        app:layout_constraintTop_toBottomOf="@+id/cardView13" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="放大镜"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView12"
+        app:layout_constraintStart_toStartOf="@+id/cardView12"
+        app:layout_constraintTop_toBottomOf="@+id/cardView12" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="快捷设置"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView14"
+        app:layout_constraintStart_toStartOf="@+id/cardView14"
+        app:layout_constraintTop_toBottomOf="@+id/cardView14" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView15"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView12"
+        app:layout_constraintStart_toStartOf="@+id/cardView12"
+        app:layout_constraintTop_toBottomOf="@+id/cardView12">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/alarm_clock"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F1A2BD">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/alarm_clock" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView16"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView14"
+        app:layout_constraintStart_toStartOf="@+id/cardView14"
+        app:layout_constraintTop_toBottomOf="@+id/cardView14">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#8FF493">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/calendar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="时间与闹钟"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView15"
+        app:layout_constraintStart_toStartOf="@+id/cardView15"
+        app:layout_constraintTop_toBottomOf="@+id/cardView15" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="日历"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView16"
+        app:layout_constraintStart_toStartOf="@+id/cardView16"
+        app:layout_constraintTop_toBottomOf="@+id/cardView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

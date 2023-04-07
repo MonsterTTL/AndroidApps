@@ -21,6 +21,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.generateprojection.adapter.NavAdapter;
 import com.example.generateprojection.fragmentS.home_navFragment;
 import com.example.generateprojection.fragmentS.news_navFragment;
+import com.example.generateprojection.fragmentS.weather_navFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         initSystemBar();
         appViewPager2 = findViewById(R.id.AppViewPager2);
         appBottomNav = findViewById(R.id.bottomNavigationView);
-        fragmentList = Arrays.asList(new news_navFragment(),new home_navFragment());
+        fragmentList = Arrays.asList(new news_navFragment(),new home_navFragment(),new weather_navFragment());
         adapter = new NavAdapter(this,fragmentList);
         appViewPager2.setAdapter(adapter);
         appViewPager2.setCurrentItem(1);
@@ -52,14 +53,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.navItem_home:
+                    case R.id.navItem_home://常用
                         appViewPager2.setCurrentItem(1);
                         break;
                     case R.id.navItem_news:
                         appViewPager2.setCurrentItem(0);
                         break;
                     case R.id.navItem_weather:
+                        appViewPager2.setCurrentItem(2);
                         break;
+                    case R.id.navItem_my:
+
                 }
 
                 item.setChecked(true);
