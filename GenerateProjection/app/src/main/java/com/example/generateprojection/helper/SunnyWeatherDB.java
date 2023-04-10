@@ -2,9 +2,10 @@ package com.example.generateprojection.helper;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SunnyWeatherDB {
+public class SunnyWeatherDB implements Serializable {
 
     @SerializedName("status")
     private String status;
@@ -89,7 +90,7 @@ public class SunnyWeatherDB {
 
     public void setServerTime(Integer serverTime) {
         this.serverTime = serverTime;
-    }
+            }
 
     public ResultDTO getResult() {
         return result;
@@ -107,7 +108,7 @@ public class SunnyWeatherDB {
         this.location = location;
     }
 
-    public static class ResultDTO {
+    public static class ResultDTO implements Serializable {
         @SerializedName("alert")
         private AlertDTO alert;
         @SerializedName("realtime")
@@ -179,11 +180,11 @@ public class SunnyWeatherDB {
             this.forecastKeypoint = forecastKeypoint;
         }
 
-        public static class AlertDTO {
+        public static class AlertDTO implements Serializable {
             @SerializedName("status")
             private String status;
             @SerializedName("content")
-            private List<?> content;
+            private List<ContentDTO> content;
             @SerializedName("adcodes")
             private List<AdcodesDTO> adcodes;
 
@@ -195,11 +196,11 @@ public class SunnyWeatherDB {
                 this.status = status;
             }
 
-            public List<?> getContent() {
+            public List<ContentDTO> getContent() {
                 return content;
             }
 
-            public void setContent(List<?> content) {
+            public void setContent(List<ContentDTO> content) {
                 this.content = content;
             }
 
@@ -211,7 +212,160 @@ public class SunnyWeatherDB {
                 this.adcodes = adcodes;
             }
 
-            public static class AdcodesDTO {
+            public static class ContentDTO implements Serializable {
+                @SerializedName("province")
+                private String province;
+                @SerializedName("status")
+                private String status;
+                @SerializedName("code")
+                private String code;
+                @SerializedName("description")
+                private String description;
+                @SerializedName("regionId")
+                private String regionId;
+                @SerializedName("county")
+                private String county;
+                @SerializedName("pubtimestamp")
+                private Integer pubtimestamp;
+                @SerializedName("city")
+                private String city;
+                @SerializedName("alertId")
+                private String alertId;
+                @SerializedName("title")
+                private String title;
+                @SerializedName("adcode")
+                private String adcode;
+                @SerializedName("source")
+                private String source;
+                @SerializedName("location")
+                private String location;
+                @SerializedName("request_status")
+                private String requestStatus;
+                @SerializedName("latlon")
+                private List<Double> latlon;
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getStatus() {
+                    return status;
+                }
+
+                public void setStatus(String status) {
+                    this.status = status;
+                }
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getDescription() {
+                    return description;
+                }
+
+                public void setDescription(String description) {
+                    this.description = description;
+                }
+
+                public String getRegionId() {
+                    return regionId;
+                }
+
+                public void setRegionId(String regionId) {
+                    this.regionId = regionId;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public Integer getPubtimestamp() {
+                    return pubtimestamp;
+                }
+
+                public void setPubtimestamp(Integer pubtimestamp) {
+                    this.pubtimestamp = pubtimestamp;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getAlertId() {
+                    return alertId;
+                }
+
+                public void setAlertId(String alertId) {
+                    this.alertId = alertId;
+                }
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+
+                public String getAdcode() {
+                    return adcode;
+                }
+
+                public void setAdcode(String adcode) {
+                    this.adcode = adcode;
+                }
+
+                public String getSource() {
+                    return source;
+                }
+
+                public void setSource(String source) {
+                    this.source = source;
+                }
+
+                public String getLocation() {
+                    return location;
+                }
+
+                public void setLocation(String location) {
+                    this.location = location;
+                }
+
+                public String getRequestStatus() {
+                    return requestStatus;
+                }
+
+                public void setRequestStatus(String requestStatus) {
+                    this.requestStatus = requestStatus;
+                }
+
+                public List<Double> getLatlon() {
+                    return latlon;
+                }
+
+                public void setLatlon(List<Double> latlon) {
+                    this.latlon = latlon;
+                }
+            }
+
+            public static class AdcodesDTO implements Serializable {
                 @SerializedName("adcode")
                 private Integer adcode;
                 @SerializedName("name")
@@ -235,7 +389,7 @@ public class SunnyWeatherDB {
             }
         }
 
-        public static class RealtimeDTO {
+        public static class RealtimeDTO implements Serializable {
             @SerializedName("status")
             private String status;
             @SerializedName("temperature")
@@ -247,7 +401,7 @@ public class SunnyWeatherDB {
             @SerializedName("skycon")
             private String skycon;
             @SerializedName("visibility")
-            private Double visibility;
+                        private Double visibility;
             @SerializedName("dswrf")
             private Double dswrf;
             @SerializedName("wind")
@@ -324,7 +478,7 @@ public class SunnyWeatherDB {
             }
 
             public void setWind(WindDTO wind) {
-                this.wind = wind;
+                            this.wind = wind;
             }
 
             public Double getPressure() {
@@ -367,7 +521,7 @@ public class SunnyWeatherDB {
                 this.lifeIndex = lifeIndex;
             }
 
-            public static class WindDTO {
+            public static class WindDTO implements Serializable {
                 @SerializedName("speed")
                 private Double speed;
                 @SerializedName("direction")
@@ -390,7 +544,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class PrecipitationDTO {
+            public static class PrecipitationDTO implements Serializable {
                 @SerializedName("local")
                 private LocalDTO local;
                 @SerializedName("nearest")
@@ -412,7 +566,7 @@ public class SunnyWeatherDB {
                     this.nearest = nearest;
                 }
 
-                public static class LocalDTO {
+                public static class LocalDTO implements Serializable {
                     @SerializedName("status")
                     private String status;
                     @SerializedName("datasource")
@@ -445,7 +599,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class NearestDTO {
+                public static class NearestDTO implements Serializable {
                     @SerializedName("status")
                     private String status;
                     @SerializedName("distance")
@@ -479,7 +633,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class AirQualityDTO {
+            public static class AirQualityDTO implements Serializable {
                 @SerializedName("pm25")
                 private Integer pm25;
                 @SerializedName("pm10")
@@ -503,7 +657,7 @@ public class SunnyWeatherDB {
 
                 public void setPm25(Integer pm25) {
                     this.pm25 = pm25;
-                }
+                                    }
 
                 public Integer getPm10() {
                     return pm10;
@@ -518,7 +672,7 @@ public class SunnyWeatherDB {
                 }
 
                 public void setO3(Integer o3) {
-                    this.o3 = o3;
+                                    this.o3 = o3;
                 }
 
                 public Integer getSo2() {
@@ -547,7 +701,7 @@ public class SunnyWeatherDB {
 
                 public AqiDTO getAqi() {
                     return aqi;
-                }
+                                    }
 
                 public void setAqi(AqiDTO aqi) {
                     this.aqi = aqi;
@@ -561,7 +715,7 @@ public class SunnyWeatherDB {
                     this.description = description;
                 }
 
-                public static class AqiDTO {
+                public static class AqiDTO implements Serializable {
                     @SerializedName("chn")
                     private Integer chn;
                     @SerializedName("usa")
@@ -584,14 +738,14 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class DescriptionDTO {
+                public static class DescriptionDTO implements Serializable {
                     @SerializedName("chn")
                     private String chn;
                     @SerializedName("usa")
                     private String usa;
 
                     public String getChn() {
-                        return chn;
+                                            return chn;
                     }
 
                     public void setChn(String chn) {
@@ -604,11 +758,11 @@ public class SunnyWeatherDB {
 
                     public void setUsa(String usa) {
                         this.usa = usa;
-                    }
+                                            }
                 }
             }
 
-            public static class LifeIndexDTO {
+            public static class LifeIndexDTO implements Serializable {
                 @SerializedName("ultraviolet")
                 private UltravioletDTO ultraviolet;
                 @SerializedName("comfort")
@@ -630,7 +784,7 @@ public class SunnyWeatherDB {
                     this.comfort = comfort;
                 }
 
-                public static class UltravioletDTO {
+                public static class UltravioletDTO implements Serializable {
                     @SerializedName("index")
                     private Double index;
                     @SerializedName("desc")
@@ -653,7 +807,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class ComfortDTO {
+                public static class ComfortDTO implements Serializable {
                     @SerializedName("index")
                     private Integer index;
                     @SerializedName("desc")
@@ -678,7 +832,7 @@ public class SunnyWeatherDB {
             }
         }
 
-        public static class MinutelyDTO {
+        public static class MinutelyDTO implements Serializable {
             @SerializedName("status")
             private String status;
             @SerializedName("datasource")
@@ -741,7 +895,7 @@ public class SunnyWeatherDB {
             }
         }
 
-        public static class HourlyDTO {
+        public static class HourlyDTO implements Serializable {
             @SerializedName("status")
             private String status;
             @SerializedName("description")
@@ -867,13 +1021,13 @@ public class SunnyWeatherDB {
 
             public List<DswrfDTO> getDswrf() {
                 return dswrf;
-            }
+                            }
 
             public void setDswrf(List<DswrfDTO> dswrf) {
                 this.dswrf = dswrf;
             }
 
-            public static class AirQualityDTOX {
+            public static class AirQualityDTOX implements Serializable {
                 @SerializedName("aqi")
                 private List<AqiDTOX> aqi;
                 @SerializedName("pm25")
@@ -895,7 +1049,7 @@ public class SunnyWeatherDB {
                     this.pm25 = pm25;
                 }
 
-                public static class AqiDTOX {
+                public static class AqiDTOX implements Serializable {
                     @SerializedName("datetime")
                     private String datetime;
                     @SerializedName("value")
@@ -917,7 +1071,7 @@ public class SunnyWeatherDB {
                         this.value = value;
                     }
 
-                    public static class ValueDTO {
+                    public static class ValueDTO implements Serializable {
                         @SerializedName("chn")
                         private Integer chn;
                         @SerializedName("usa")
@@ -941,7 +1095,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class Pm25DTO {
+                public static class Pm25DTO implements Serializable {
                     @SerializedName("datetime")
                     private String datetime;
                     @SerializedName("value")
@@ -965,7 +1119,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class PrecipitationDTOX {
+            public static class PrecipitationDTOX implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -998,8 +1152,31 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class TemperatureDTO {
+            public static class TemperatureDTO implements Serializable {
                 @SerializedName("datetime")
+                private String datetime;
+                @SerializedName("value")
+                private Double value;
+
+                public String getDatetime() {
+                                    return datetime;
+                }
+
+                public void setDatetime(String datetime) {
+                    this.datetime = datetime;
+                }
+
+                public Double getValue() {
+                    return value;
+                }
+
+                public void setValue(Double value) {
+                    this.value = value;
+                }
+            }
+
+            public static class ApparentTemperatureDTO implements Serializable {
+                            @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
                 private Double value;
@@ -1021,30 +1198,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class ApparentTemperatureDTO {
-                @SerializedName("datetime")
-                private String datetime;
-                @SerializedName("value")
-                private Double value;
-
-                public String getDatetime() {
-                    return datetime;
-                }
-
-                public void setDatetime(String datetime) {
-                    this.datetime = datetime;
-                }
-
-                public Double getValue() {
-                    return value;
-                }
-
-                public void setValue(Double value) {
-                    this.value = value;
-                }
-            }
-
-            public static class WindDTOX {
+            public static class WindDTOX implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("speed")
@@ -1077,7 +1231,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class HumidityDTO {
+            public static class HumidityDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1100,7 +1254,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class CloudrateDTO {
+            public static class CloudrateDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1115,7 +1269,7 @@ public class SunnyWeatherDB {
                 }
 
                 public Double getValue() {
-                    return value;
+                                    return value;
                 }
 
                 public void setValue(Double value) {
@@ -1123,7 +1277,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class SkyconDTO {
+            public static class SkyconDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1146,7 +1300,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class PressureDTO {
+            public static class PressureDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1169,7 +1323,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class VisibilityDTO {
+            public static class VisibilityDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1192,7 +1346,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class DswrfDTO {
+            public static class DswrfDTO implements Serializable {
                 @SerializedName("datetime")
                 private String datetime;
                 @SerializedName("value")
@@ -1213,10 +1367,10 @@ public class SunnyWeatherDB {
                 public void setValue(Double value) {
                     this.value = value;
                 }
-            }
+                            }
         }
 
-        public static class DailyDTO {
+        public static class DailyDTO implements Serializable {
             @SerializedName("status")
             private String status;
             @SerializedName("air_quality")
@@ -1228,7 +1382,7 @@ public class SunnyWeatherDB {
             @SerializedName("precipitation_08h_20h")
             private List<Precipitation08h20hDTO> precipitation08h20h;
             @SerializedName("precipitation_20h_32h")
-            private List<Precipitation20h32hDTO> precipitation20h32h;
+                        private List<Precipitation20h32hDTO> precipitation20h32h;
             @SerializedName("precipitation")
             private List<PrecipitationDTOXX> precipitation;
             @SerializedName("temperature")
@@ -1326,7 +1480,7 @@ public class SunnyWeatherDB {
 
             public List<Temperature08h20hDTO> getTemperature08h20h() {
                 return temperature08h20h;
-            }
+                            }
 
             public void setTemperature08h20h(List<Temperature08h20hDTO> temperature08h20h) {
                 this.temperature08h20h = temperature08h20h;
@@ -1428,7 +1582,7 @@ public class SunnyWeatherDB {
                 this.skycon20h32h = skycon20h32h;
             }
 
-            public static class AirQualityDTOXX {
+            public static class AirQualityDTOXX implements Serializable {
                 @SerializedName("aqi")
                 private List<AqiDTOXX> aqi;
                 @SerializedName("pm25")
@@ -1448,9 +1602,9 @@ public class SunnyWeatherDB {
 
                 public void setPm25(List<Pm25DTOX> pm25) {
                     this.pm25 = pm25;
-                }
+                                    }
 
-                public static class AqiDTOXX {
+                public static class AqiDTOXX implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("max")
@@ -1492,7 +1646,7 @@ public class SunnyWeatherDB {
                         this.min = min;
                     }
 
-                    public static class MaxDTO {
+                    public static class MaxDTO implements Serializable {
                         @SerializedName("chn")
                         private Integer chn;
                         @SerializedName("usa")
@@ -1515,7 +1669,7 @@ public class SunnyWeatherDB {
                         }
                     }
 
-                    public static class AvgDTO {
+                    public static class AvgDTO implements Serializable {
                         @SerializedName("chn")
                         private Integer chn;
                         @SerializedName("usa")
@@ -1538,7 +1692,7 @@ public class SunnyWeatherDB {
                         }
                     }
 
-                    public static class MinDTO {
+                    public static class MinDTO implements Serializable {
                         @SerializedName("chn")
                         private Integer chn;
                         @SerializedName("usa")
@@ -1562,7 +1716,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class Pm25DTOX {
+                public static class Pm25DTOX implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("max")
@@ -1606,7 +1760,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class LifeIndexDTOX {
+            public static class LifeIndexDTOX implements Serializable {
                 @SerializedName("ultraviolet")
                 private List<UltravioletDTOX> ultraviolet;
                 @SerializedName("carWashing")
@@ -1658,7 +1812,7 @@ public class SunnyWeatherDB {
                     this.coldRisk = coldRisk;
                 }
 
-                public static class UltravioletDTOX {
+                public static class UltravioletDTOX implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("index")
@@ -1691,7 +1845,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class CarWashingDTO {
+                public static class CarWashingDTO implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("index")
@@ -1724,7 +1878,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class DressingDTO {
+                public static class DressingDTO implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("index")
@@ -1757,7 +1911,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class ComfortDTOX {
+                public static class ComfortDTOX implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("index")
@@ -1790,7 +1944,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class ColdRiskDTO {
+                public static class ColdRiskDTO implements Serializable {
                     @SerializedName("date")
                     private String date;
                     @SerializedName("index")
@@ -1824,7 +1978,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class AstroDTO {
+            public static class AstroDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("sunrise")
@@ -1856,7 +2010,7 @@ public class SunnyWeatherDB {
                     this.sunset = sunset;
                 }
 
-                public static class SunriseDTO {
+                public static class SunriseDTO implements Serializable {
                     @SerializedName("time")
                     private String time;
 
@@ -1869,7 +2023,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class SunsetDTO {
+                public static class SunsetDTO implements Serializable {
                     @SerializedName("time")
                     private String time;
 
@@ -1883,7 +2037,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Precipitation08h20hDTO {
+            public static class Precipitation08h20hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -1936,7 +2090,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Precipitation20h32hDTO {
+            public static class Precipitation20h32hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -1989,7 +2143,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class PrecipitationDTOXX {
+            public static class PrecipitationDTOXX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2042,7 +2196,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class TemperatureDTOX {
+            public static class TemperatureDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2085,7 +2239,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Temperature08h20hDTO {
+            public static class Temperature08h20hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2128,7 +2282,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Temperature20h32hDTO {
+            public static class Temperature20h32hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2171,7 +2325,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class WindDTOXX {
+            public static class WindDTOXX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2213,7 +2367,7 @@ public class SunnyWeatherDB {
                     this.avg = avg;
                 }
 
-                public static class MaxDTOX {
+                public static class MaxDTOX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2236,7 +2390,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class MinDTOX {
+                public static class MinDTOX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2259,7 +2413,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class AvgDTOX {
+                public static class AvgDTOX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2283,7 +2437,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Wind08h20hDTO {
+            public static class Wind08h20hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2325,7 +2479,7 @@ public class SunnyWeatherDB {
                     this.avg = avg;
                 }
 
-                public static class MaxDTOXX {
+                public static class MaxDTOXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2348,7 +2502,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class MinDTOXX {
+                public static class MinDTOXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2371,7 +2525,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class AvgDTOXX {
+                public static class AvgDTOXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2395,7 +2549,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Wind20h32hDTO {
+            public static class Wind20h32hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2437,7 +2591,7 @@ public class SunnyWeatherDB {
                     this.avg = avg;
                 }
 
-                public static class MaxDTOXXX {
+                public static class MaxDTOXXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2460,7 +2614,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class MinDTOXXX {
+                public static class MinDTOXXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2483,7 +2637,7 @@ public class SunnyWeatherDB {
                     }
                 }
 
-                public static class AvgDTOXXX {
+                public static class AvgDTOXXX implements Serializable {
                     @SerializedName("speed")
                     private Double speed;
                     @SerializedName("direction")
@@ -2507,7 +2661,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class HumidityDTOX {
+            public static class HumidityDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2550,7 +2704,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class CloudrateDTOX {
+            public static class CloudrateDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2593,7 +2747,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class PressureDTOX {
+            public static class PressureDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2636,7 +2790,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class VisibilityDTOX {
+            public static class VisibilityDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2679,7 +2833,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class DswrfDTOX {
+            public static class DswrfDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("max")
@@ -2722,7 +2876,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class SkyconDTOX {
+            public static class SkyconDTOX implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("value")
@@ -2745,7 +2899,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Skycon08h20hDTO {
+            public static class Skycon08h20hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("value")
@@ -2768,7 +2922,7 @@ public class SunnyWeatherDB {
                 }
             }
 
-            public static class Skycon20h32hDTO {
+            public static class Skycon20h32hDTO implements Serializable {
                 @SerializedName("date")
                 private String date;
                 @SerializedName("value")

@@ -17,7 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -32,6 +36,20 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 @Route(path = "/quick/quickActivity")
 public class QuickActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result == true){
+
+                    }else{
+                        Toast.makeText(QuickActivity.this, "您需要以下权限", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
     Button wifiSwitch;//wifi开关
     Button blueSwitch;//蓝牙开关
     SimpleViewModel simpleViewModel;//存储状态的ViewModel
@@ -316,10 +334,16 @@ public class QuickActivity extends AppCompatActivity implements View.OnClickList
         }
 
         public void setRingVoice(int number){
+            launcher.launch(Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            launcher.launch(Manifest.permission.ACCESS_NOTIFICATION_POLICY);
+            closeSilentMode();
             audioManager.setStreamVolume(AudioManager.STREAM_RING,number,AudioManager.FLAG_PLAY_SOUND);
         }
 
         public int getRingVoice(){
+            launcher.launch(Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            launcher.launch(Manifest.permission.ACCESS_NOTIFICATION_POLICY);
+
             return audioManager.getStreamVolume(AudioManager.STREAM_RING);
         }
 
@@ -328,6 +352,7 @@ public class QuickActivity extends AppCompatActivity implements View.OnClickList
         }
 
         public void setMediaVoice(int num){
+            launcher.launch(Manifest.permission.MODIFY_AUDIO_SETTINGS);
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,num,AudioManager.FLAG_PLAY_SOUND);
         }
 
@@ -371,5 +396,7 @@ public class QuickActivity extends AppCompatActivity implements View.OnClickList
         RingVoice.setProgress(MyMethod.getRingVoice());
         MediaVoice.setProgress(MyMethod.getMediaVoice());
     }
+
+
 }
 

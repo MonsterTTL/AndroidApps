@@ -48,7 +48,9 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.8.0'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation 'androidx.fragment:fragment:1.5.6'
+
     implementation files('libs\\Msc.jar')
+    implementation files('libs\\AMap3DMap_9.6.0_AMapNavi_9.6.0_AMapSearch_9.5.0_AMapLocation_6.2.0_20230116.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
