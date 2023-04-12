@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -66,7 +67,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.ViewHolder> {
                     .into(holder.news_img);
             holder.news_text.setText(arrayList.get(position).getTitle());
             String uri = arrayList.get(position).getUrl();
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(fa, NewsActivity.class);
@@ -79,7 +80,7 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.ViewHolder> {
             Glide.with(holder.news_img).load(topArrayList.get(position-6).getImage()).into(holder.news_img);
             holder.news_text.setText(topArrayList.get(position-6).getTitle());
             String uri = topArrayList.get(position-6).getUrl();
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(fa, NewsActivity.class);
@@ -103,12 +104,15 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.ViewHolder> {
         TextView likes_number;
         TextView comments_number;
 
+        CardView cardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             news_img = itemView.findViewById(R.id.news_img);
             news_text = itemView.findViewById(R.id.news_text);
             likes_number = itemView.findViewById(R.id.likes_number);
             comments_number = itemView.findViewById(R.id.comments_number);
+            cardView = itemView.findViewById(R.id.news_cardview);
         }
     }
 

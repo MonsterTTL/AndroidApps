@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/baseline_add_circle_outline_24"
+        android:icon="@drawable/baseline_refresh_24"
+        android:id="@+id/RefreshWeather"
         android:title="Item"
         app:showAsAction="always" />
 </menu>

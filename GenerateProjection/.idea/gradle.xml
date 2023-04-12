@@ -17,7 +17,7 @@
             <option value="$PROJECT_DIR$/camera" />
             <option value="$PROJECT_DIR$/light" />
             <option value="$PROJECT_DIR$/quickswitch" />
-            <option value="$PROJECT_DIR$/weathermodule" />
+            <option value="$PROJECT_DIR$/remote_help" />
           </set>
         </option>
       </GradleProjectSettings>

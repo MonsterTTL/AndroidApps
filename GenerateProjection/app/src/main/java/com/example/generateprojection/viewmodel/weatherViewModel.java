@@ -31,7 +31,7 @@ public class weatherViewModel extends ViewModel {
     private static final String SunnyWeather_Head = "https://api.caiyunapp.com/v2.6/";
     private static final String SunnyWeather_Test = "116.3176,39.9760";
 
-    private SunnyWeatherDB[] weatherDBS = new SunnyWeatherDB[20];//实体类的数组
+    private SunnyWeatherDB weatherDB ;//实体类的数组
     private int SunnyCur = 0;
 
     private static String BD_URL = "https://api.map.baidu.com/weather/v1/?district_id=222405&data_type=all&ak=LmYvC3j2GGiVN2FjGcqFpoCFekgfPtRc";
@@ -48,18 +48,15 @@ public class weatherViewModel extends ViewModel {
         mCall.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                Log.d(TAG, "onFailure: "+"请求失败");
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 //Log.d(TAG, "onResponse: "+response.body().string());
                 SunnyWeatherDB db = new Gson().fromJson(response.body().string(),SunnyWeatherDB.class);
-                if(SunnyCur < weatherDBS.length){
-                    weatherDBS[SunnyCur++] = db;
-                }else{
-                    Log.d(TAG, "weatherDBS"+"信息队列已满");
-                }
+                weatherDB = db;
+
                 flag.postValue(true);
             }
         });
@@ -69,17 +66,13 @@ public class weatherViewModel extends ViewModel {
     public void setLocationXY(double jingdu,double weidu){
         this.jingdu = jingdu;
         this.weidu = weidu;
+        requireData();
         Log.d(TAG, "setLocationXY: "+"传递成功");
     }
 
-    public SunnyWeatherDB getWeatherData(int position){
-        if(position <= SunnyCur){
-            return weatherDBS[position];
-        }
-        else{
-            Log.d(TAG, "getWeatherData: "+"访问下标越界");
-            return null;
-        }
+    public SunnyWeatherDB getWeatherData(){
+       return weatherDB;
     }
+
 
 }

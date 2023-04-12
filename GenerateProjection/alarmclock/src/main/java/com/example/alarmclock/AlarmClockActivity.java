@@ -3,8 +3,12 @@ package com.example.alarmclock;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.AlarmClock;
@@ -16,12 +20,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Route(path = "/Alarm/AlarmClock")
 public class AlarmClockActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     View set_clock;
     View open_systemClock;
+    View clear_alarm;
     AlarmManager manager;
     Calendar now;
     @Override
@@ -30,6 +36,7 @@ public class AlarmClockActivity extends AppCompatActivity implements TimePickerD
         setContentView(R.layout.activity_alarm_clock);
         set_clock = findViewById(R.id.set_clock);
         open_systemClock = findViewById(R.id.system_clock);
+        clear_alarm = findViewById(R.id.clear_alarm);
         now = Calendar.getInstance();
 
         manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -47,6 +54,21 @@ public class AlarmClockActivity extends AppCompatActivity implements TimePickerD
             public void onClick(View v) {
                 Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
                 startActivity(intent);
+            }
+        });
+
+        clear_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //获取闹钟管理器
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+                //删除所有闹钟
+                Intent intent = new Intent(AlarmClock.ACTION_DISMISS_ALARM);
+                intent.putExtra(AlarmClock.EXTRA_MESSAGE,"悠然-闹钟");
+                startActivity(intent);
+
             }
         });
 

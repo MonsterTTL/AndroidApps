@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -24,12 +25,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class home_navFragment extends Fragment implements AudioHelper.SpeechCallBack {
 
-    View remoteAssit;
-    View magnifyGlass;
+    CardView remoteAssit;
+    CardView magnifyGlass;
     View light;
-    View quickSettings;
-    View LightS;
-    View AlarmClock;
+    CardView quickSettings;
+    CardView LightS;
+    CardView AlarmClock;
     FloatingActionButton audioInput;
     ActivityResultLauncher<String> launcher;
     @Nullable
@@ -75,7 +76,7 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
         remoteAssit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(requireContext(), "tt", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build("/remote/remoteActivity").navigation();
             }
         });
         LightS.setOnClickListener(new View.OnClickListener() {

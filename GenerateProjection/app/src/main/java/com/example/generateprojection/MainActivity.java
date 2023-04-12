@@ -5,15 +5,16 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,11 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -34,10 +32,10 @@ import com.example.generateprojection.adapter.NavAdapter;
 import com.example.generateprojection.fragmentS.home_navFragment;
 import com.example.generateprojection.fragmentS.news_navFragment;
 import com.example.generateprojection.fragmentS.weather_navFragment;
+import com.example.generateprojection.viewmodel.weatherViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -77,18 +75,20 @@ public class MainActivity extends AppCompatActivity {
     private String prince;
     private String city;
 
+    weather_navFragment weather_navFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initSystemBar();
+        initSystemBar(R.color.toolbar);
         appViewPager2 = findViewById(R.id.AppViewPager2);
         appBottomNav = findViewById(R.id.bottomNavigationView);
-        fragmentList = Arrays.asList(new news_navFragment(),new home_navFragment(),new weather_navFragment());
+        weather_navFragment = new weather_navFragment();
+        fragmentList = Arrays.asList(new home_navFragment(),weather_navFragment,new news_navFragment());
         adapter = new NavAdapter(this,fragmentList);
         appViewPager2.setAdapter(adapter);
-        appViewPager2.setCurrentItem(1);
+        appViewPager2.setCurrentItem(0);
         appViewPager2.setUserInputEnabled(false);
         appBottomNav.setSelectedItemId(R.id.navItem_home);
         appBottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -96,23 +96,27 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navItem_home://常用
-                        appViewPager2.setCurrentItem(1);
-                        break;
-                    case R.id.navItem_news:
                         appViewPager2.setCurrentItem(0);
                         break;
-                    case R.id.navItem_weather:
+                    case R.id.navItem_news:
                         appViewPager2.setCurrentItem(2);
                         break;
-                    case R.id.navItem_my:
-
+                    case R.id.navItem_weather:
+                        appViewPager2.setCurrentItem(1);
+                        break;
                 }
-
                 item.setChecked(true);
                 return false;
             }
         });
 
+        weatherViewModel model = new ViewModelProvider(MainActivity.this).get(weatherViewModel.class);
+        model.flag.observe(MainActivity.this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                weather_navFragment.refreshUI();
+            }
+        });
 
 
         //这里开始是高德定位的设置
@@ -154,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
                         city = aMapLocation.getCity();
 
                         //获取碎片实例以进行通信
-                        weather_navFragment fragment = (weather_navFragment) fragmentList.get(2);
+
                         //参数传递
-                        fragment.model.setLocationXY(jingdu,weidu);
-                        fragment.model.requireData();
+                        model.setLocationXY(jingdu,weidu);
+
                         //adapter.notifyItemChanged(2);
 
                         Log.d(TAG, "x:"+ jingdu +" y:"+ weidu);
@@ -174,11 +178,11 @@ public class MainActivity extends AppCompatActivity {
         //开始定位参数的配置
 
         //设置定位场景
-        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.Transport);
+        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
         //设置定位模式为高精度定位
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置连续定位(默认就是连续定位，每隔2000ms)
-        //mLocationOption.setInterval(2000);//设置周期为4000ms
+        mLocationOption.setInterval(2000);//设置周期为4000ms
         mLocationOption.setOnceLocation(true);//设置单次定位
         //设置是否返回地址信息
         mLocationOption.setNeedAddress(true);
@@ -207,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         return statusBarHeight;
     }
 
-    private void initSystemBar(){
+    private void initSystemBar(int color){
         Window window = this.getWindow();
         ViewGroup decorViewGroup = (ViewGroup) window.getDecorView();
         View statusBarView = new View(window.getContext());
@@ -216,7 +220,13 @@ public class MainActivity extends AppCompatActivity {
                 statusBarHeight);
         params.gravity = Gravity.TOP;
         statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(getResources().getColor(R.color.toolbar));
+        statusBarView.setBackgroundColor(getResources().getColor(color));
         decorViewGroup.addView(statusBarView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }

@@ -1,23 +1,29 @@
 package com.example.generateprojection.fragmentS;
 
+import android.content.ClipData;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.example.generateprojection.MainActivity;
 import com.example.generateprojection.R;
 import com.example.generateprojection.helper.SunnyWeatherDB;
 import com.example.generateprojection.viewmodel.weatherViewModel;
@@ -39,6 +45,10 @@ public class weather_navFragment extends Fragment {
     private TextView air_index;
     private TextView pm25_index;
 
+    Toolbar weatherToolbar;
+
+    ProgressBar progressBar;
+
     public weather_navFragment() {
 
     }
@@ -57,25 +67,37 @@ public class weather_navFragment extends Fragment {
         coldRisk_index = view.findViewById(R.id.coldRisk);
         pm25_index = view.findViewById(R.id.pm25_index);
         air_index = view.findViewById(R.id.air_index);
-
+        weatherToolbar = view.findViewById(R.id.weather_toolbar);
+        progressBar = view.findViewById(R.id.weather_progress);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        model.flag.observe(requireActivity(), new Observer<Boolean>() {
+        ((MainActivity)requireActivity()).mLocationClient.startLocation();
+        weatherToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                refreshUI();
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.RefreshWeather:
+                        progressBar.setVisibility(View.VISIBLE);
+                        ((MainActivity)requireActivity()).mLocationClient.startLocation();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
             }
         });
-
 
     }
 
     public void refreshUI(){//刷新UI
-        SunnyWeatherDB db = model.getWeatherData(0);
+        SunnyWeatherDB db = null;
+        if(model != null){
+            db = model.getWeatherData();
+        }
         if(db != null)//如果数据有效
         {
             address.setText(db.getResult().getAlert().getAdcodes().get(2).getName());
@@ -83,6 +105,8 @@ public class weather_navFragment extends Fragment {
                     );
             String weather = db.getResult().getRealtime().getSkycon();
             weather_data.setText(parseSkycon(weather));
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(getContext(), "天气信息刷新成功", Toast.LENGTH_SHORT).show();
         }else{
             Log.d(TAG, "refreshUI: "+"实体类无效");
         }

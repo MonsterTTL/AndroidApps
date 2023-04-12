@@ -15,9 +15,4 @@
         android:icon="@drawable/news_iicon"
         android:iconTintMode="src_in"
         android:title="新闻" />
-    <item
-        android:id="@+id/navItem_my"
-        android:icon="@drawable/baseline_people_24"
-        android:title="我的"
-        />
 </menu>
