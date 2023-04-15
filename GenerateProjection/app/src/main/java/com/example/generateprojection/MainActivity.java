@@ -14,7 +14,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -156,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         prince = aMapLocation.getProvince();
                         //获取城市信息
                         city = aMapLocation.getCity();
-
+                        Log.d(TAG, "onLocationChanged: "+city);
                         //获取碎片实例以进行通信
 
                         //参数传递

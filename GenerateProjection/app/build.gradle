@@ -59,5 +59,6 @@ dependencies {
     implementation project(":light")
     implementation project(":alarmclock")
     implementation project(":remote_help")
+    implementation project(":BusQuery")
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
 }

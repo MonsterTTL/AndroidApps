@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.example.generateprojection.MainActivity;
 import com.example.generateprojection.R;
+import com.example.generateprojection.adapter.forecasetAdapter;
 import com.example.generateprojection.helper.SunnyWeatherDB;
 import com.example.generateprojection.viewmodel.weatherViewModel;
 
@@ -48,6 +51,7 @@ public class weather_navFragment extends Fragment {
     Toolbar weatherToolbar;
 
     ProgressBar progressBar;
+    RecyclerView futureWeathers;
 
     public weather_navFragment() {
 
@@ -69,6 +73,7 @@ public class weather_navFragment extends Fragment {
         air_index = view.findViewById(R.id.air_index);
         weatherToolbar = view.findViewById(R.id.weather_toolbar);
         progressBar = view.findViewById(R.id.weather_progress);
+        futureWeathers = view.findViewById(R.id.future_weathers);
         return view;
     }
 
@@ -76,6 +81,7 @@ public class weather_navFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity)requireActivity()).mLocationClient.startLocation();
+
         weatherToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -105,7 +111,27 @@ public class weather_navFragment extends Fragment {
                     );
             String weather = db.getResult().getRealtime().getSkycon();
             weather_data.setText(parseSkycon(weather));
+            String coldRisk = db.getResult().getDaily().getLifeIndex().getColdRisk().get(0).getDesc();
+            coldRisk_index.setText(coldRisk);
+            String comfort = db.getResult().getDaily().getLifeIndex().getComfort().get(0).getDesc();
+            comfort_index.setText(comfort);
+            String urt = db.getResult().getDaily().getLifeIndex().getUltraviolet().get(0).getDesc();
+            ultraviolet_index.setText(urt);
+            String dress = db.getResult().getDaily().getLifeIndex().getDressing().get(0).getDesc();
+            dress_index.setText(dress);
+            String airq = db.getResult().getRealtime().getAirQuality().getDescription().getChn();
+            air_index.setText(airq);
+            int pm25 = db.getResult().getRealtime().getAirQuality().getPm25();
+            pm25_index.setText(String.valueOf(pm25));
             progressBar.setVisibility(View.GONE);
+
+            //刷新天气预报--后四天
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            futureWeathers.setLayoutManager(layoutManager);
+            forecasetAdapter forecasetAdapter = new forecasetAdapter(db);
+            futureWeathers.setAdapter(forecasetAdapter);
+
             Toast.makeText(getContext(), "天气信息刷新成功", Toast.LENGTH_SHORT).show();
         }else{
             Log.d(TAG, "refreshUI: "+"实体类无效");
@@ -148,19 +174,70 @@ public class weather_navFragment extends Fragment {
     private final static int AIR_STD = 6;
 
     private String parseLifeIndex(int std,int data){
-        switch (std){
-            case ULTRA_STD:
-                break;
-            case DRESS_STD:
-                break;
-            case COLDRISK_STD:
-                break;
-            case PM25_STD:
-                break;
-            case COMFORT_STD:
-
-        }
-
         return null;
+    }
+
+    private String parseDressIndex(int data){
+        switch (data){
+            case 0:
+            case 1:
+                return "极热";
+            case 2:
+                return "很热";
+            case 3:
+                return "热";
+            case 4:
+                return "温暖";
+            case 5:
+                return "凉爽";
+            case 6:
+                return "冷";
+            case 7:
+                return "寒冷";
+            case 8:
+                return "极冷";
+            default:
+                return "";
+        }
+    }
+
+    private String parseUltra(int data){
+        switch (data){
+            case 0:
+                return "无";
+            case 1:
+            case 2:
+                return "很弱";
+            case 3:
+            case 4:
+                return "弱";
+            case 5:
+            case 6:
+                return "中等";
+            case 7:
+            case 8:
+            case 9:
+                return "强";
+            case 10:
+            case 11:
+                return "很强";
+            default:
+                return "";
+        }
+    }
+
+    private String parseColdRate(int data){
+        switch (data){
+            case 1:
+                return "少发";
+            case 2:
+                return "较易发";
+            case 3:
+                return "易发";
+            case 4:
+                return "极易发";
+            default:
+                return "";
+        }
     }
 }

@@ -27,6 +27,7 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
 
     CardView remoteAssit;
     CardView magnifyGlass;
+    CardView bus ;
     View light;
     CardView quickSettings;
     CardView LightS;
@@ -42,6 +43,7 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
         LightS = view.findViewById(R.id.LightS);
         audioInput = view.findViewById(R.id.audioInput);
         quickSettings = view.findViewById(R.id.quickSetting);
+        bus = view.findViewById(R.id.calendar);
         AlarmClock = view.findViewById(R.id.alarm_clock);
         launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission()
                 , new ActivityResultCallback<Boolean>() {
@@ -86,12 +88,21 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
             }
         });
 
+        bus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/Bus/BusActivity").navigation();
+            }
+        });
+
         AlarmClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ARouter.getInstance().build("/Alarm/AlarmClock").navigation();
             }
         });
+
+
 
         //语音识别模块
         audioInput.setOnClickListener(new View.OnClickListener() {
@@ -118,11 +129,13 @@ public class home_navFragment extends Fragment implements AudioHelper.SpeechCall
         if(result.contains("放大镜")){
             ARouter.getInstance().build("/camera/cameraActivity").navigation();
         }else if (result.contains("远程协助")){
-
+            ARouter.getInstance().build("/remote/remoteActivity").navigation();
         }else if(result.contains("快捷设置")){
             ARouter.getInstance().build("/quick/quickActivity").navigation();
         }else if(result.contains("手电筒")){
             ARouter.getInstance().build("/Light/LightActivity").navigation();
+        }else if(result.contains("钟")){
+            ARouter.getInstance().build("/Alarm/AlarmClock").navigation();
         }
     }
 }

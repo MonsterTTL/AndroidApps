@@ -19,11 +19,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".TopApplication"
+        android:name="com.example.generateprojection.TopApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/youran_icon"
+        android:icon="@drawable/project_icon"
         android:label="悠然"
         android:supportsRtl="true"
         android:theme="@style/Theme.GenerateProjection"

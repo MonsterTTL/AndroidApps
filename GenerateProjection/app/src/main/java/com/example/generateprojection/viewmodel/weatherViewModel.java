@@ -27,7 +27,7 @@ public class weatherViewModel extends ViewModel {
 
     //和彩云天气相关的字段
     private static final String SunnyWeather_Key = "rLrw3QR1WolaqQyG/";
-    private static final String SunnyWeather_End = "/weather?alert=true&dailysteps=1&hourlysteps=24";
+    private static final String SunnyWeather_End = "/weather?alert=true&dailysteps=4&hourlysteps=24";
     private static final String SunnyWeather_Head = "https://api.caiyunapp.com/v2.6/";
     private static final String SunnyWeather_Test = "116.3176,39.9760";
 

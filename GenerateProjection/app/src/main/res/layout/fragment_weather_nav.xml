@@ -175,7 +175,7 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:text="未来天气预测"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -185,10 +185,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/future_weathers"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -198,12 +199,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="空气质量"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/future_weathers" />
+                app:layout_constraintBottom_toTopOf="@+id/air_index"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -231,13 +232,13 @@
                 android:id="@+id/air_index"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
                 android:text="好"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView20"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintStart_toStartOf="@+id/textView20" />
 
             <TextView
                 android:id="@+id/ultraviolet_index"

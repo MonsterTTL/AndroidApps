@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="点赞"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6" />
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="评论"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
                 app:layout_constraintTop_toTopOf="@+id/imageView7" />
